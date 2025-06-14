@@ -1,0 +1,42 @@
+{
+  "name": "stats-spotify",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@primeuix/themes": "^1.1.1",
+    "@unovis/ts": "^1.5.2",
+    "@unovis/vue": "^1.5.2",
+    "@vueuse/core": "^13.3.0",
+    "clsx": "^2.1.1",
+    "embla-carousel-vue": "^8.6.0",
+    "lucide-vue-next": "^0.511.0",
+    "motion-v": "^1.1.1",
+    "pinia": "^3.0.2",
+    "primeicons": "^7.0.0",
+    "primevue": "^4.3.4",
+    "reka-ui": "^2.3.1",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@inspira-ui/plugins": "^0.0.1",
+    "@types/node": "^22.15.29",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "autoprefixer": "^10.4.21",
+    "class-variance-authority": "^0.7.1",
+    "postcss": "^8.5.3",
+    "tailwind-merge": "^3.3.0",
+    "tailwindcss": "^3.4.17",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0",
+    "vue-tsc": "^2.2.4"
+  }
+}
