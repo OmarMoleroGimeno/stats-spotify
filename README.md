@@ -1,5 +1,35 @@
-# Vue 3 + TypeScript + Vite
+# Spotify Stats Viewer 🎧
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A web application that displays Spotify user statistics in a clean, responsive, and modern interface.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## 🚀 Technologies Used
+
+- **Vue 3**: The progressive JavaScript framework.
+- **Pinia**: Modern state management for Vue.
+- **Tailwind CSS**: Utility-first CSS framework for fast and responsive UI design.
+- **Inspira UI**: Modern and customizable UI component library.
+- **PrimeVue**: Rich and fully-featured Vue UI component library.
+- **shadcn/vue**: Accessible, composable, and fully styled Vue components based on Radix UI.
+- **Spotify Web API**: Fetching user data and stats from Spotify.
+
+## 🔧 Features
+
+- Secure Spotify OAuth authentication.
+- Visualization of:
+  - Top tracks
+  - Favorite artists
+  - Featured playlists
+  - Playback statistics by time range
+- Fully responsive and accessible UI.
+- Smooth animations with modern UI using Inspira UI, PrimeVue, and shadcn/vue.
+- Global state management with Pinia.
+- Clean and modular architecture.
+
+## 📦 Installation & Running the Project
+
+### 1️⃣ Clone the repository
+
+```bash
+git clone https://github.com/OmarMoleroGimeno/stats-spotify.git
+cd stats-spotify
+```
