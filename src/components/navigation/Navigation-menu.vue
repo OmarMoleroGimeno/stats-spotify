@@ -1,13 +1,21 @@
 <template>
-    <nav class="flex flex-row space-x-[30px] bg-customGray px-[28px] py-[10px] rounded-full border-b-[2px] border-customGreen">
-      <a v-for="(data, index) in userData" 
-        :key="index" 
-        @click="redirect(index, data)"
-        :class="selected === index ? 'text-customGreen underline' : 'text-white no-underline'"
-        class="text-lg cursor-pointer hover:underline transition-colors duration-200">
+  <nav class="flex flex-row space-x-[30px] bg-customGray px-[28px] py-[10px] rounded-full border-b-[2px] border-customGreen relative">
+    <div 
+      v-for="(data, index) in userData" 
+      :key="index" 
+      @click="redirect(index, data)"
+      class="relative cursor-pointer text-lg transition-colors duration-200"
+    >
+      <span :class="selected === index ? 'text-customGreen' : 'text-white hover:text-customGreen'">
         {{ data }}
-    </a>
-    </nav>
+      </span>
+      <!-- Subrayado custom animado -->
+      <div 
+        class="absolute bottom-0 left-0 right-0 h-[3px] bg-customGreen rounded-full transition-transform duration-300"
+        :class="selected === index ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'"
+      ></div>
+    </div>
+  </nav>
 </template>
 
 <script setup>
@@ -25,19 +33,17 @@ function redirect(index, data) {
   router.push(path)
 }
 
-// Sincronizar selected con la ruta actual:
 function syncSelectedWithRoute() {
   const currentPath = route.path.toLowerCase()
-  // Buscar índice según path, quitando barra inicial
   const index = userData.findIndex(d => `/${d.toLowerCase()}` === currentPath)
   if (index !== -1) selected.value = index
-  else selected.value = 0  // fallback si no encuentra
+  else selected.value = 0
 }
 
 onMounted(syncSelectedWithRoute)
 
-// También hacer watch por si cambia ruta sin hacer click (back/forward)
 watch(() => route.path, () => {
-  syncSelectedWithRoute()
+  syncSelectedWithRoute();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 })
 </script>
