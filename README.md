@@ -27,9 +27,21 @@ A web application that displays Spotify user statistics in a clean, responsive, 
 
 ## 📦 Installation & Running the Project
 
-### 1️⃣ Clone the repository
+### 1️ Clone the repository
 
 ```bash
 git clone https://github.com/OmarMoleroGimeno/stats-spotify.git
 cd stats-spotify
+```
+
+### 2 Install dependences
+
+```bash
+npm i
+```
+
+### 3 Run proyect
+
+```bash
+npm run serve
 ```
