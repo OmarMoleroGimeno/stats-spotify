@@ -17,7 +17,8 @@ export const spotyStore = defineStore('store', {
     position: 0,
     duration: 0,
     volume: 0.01,
-    term: 'long_term'
+    term: 'long_term',
+    albumShowing: {},
   }),
   actions: {
     setLoading(value) {
@@ -116,7 +117,8 @@ export const spotyStore = defineStore('store', {
         await this.getPlaylists();
         await this.getAlbums();
         await this.initPlayer();
-        this.trackShowing = this.tracks?.items?.[0]
+        this.trackShowing = this.tracks?.items?.[0];
+        await this.getAlbumDetails(this.albums?.[1]?.id);
       } catch (error) {
         console.error("Error en onInit:", error);
         this.LogOut();
@@ -280,6 +282,25 @@ export const spotyStore = defineStore('store', {
       }));
 
       this.albums = albumsWithCount;
+    },
+
+    async getAlbumDetails(albumId) {
+      const res = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+        headers: { Authorization: `Bearer ${this.token}` },
+      });
+      const album = await res.json();
+
+      // Calculamos duración total
+      const totalMs = album.tracks.items.reduce((sum, track) => sum + track.duration_ms, 0);
+      const totalMinutes = Math.floor(totalMs / 60000);
+      const totalSeconds = Math.floor((totalMs % 60000) / 1000);
+      const albumLength = `${totalMinutes}:${totalSeconds.toString().padStart(2, '0')}`;
+
+      // Guardamos el álbum completo en el estado
+      this.albumShowing = {
+        ...album,
+        albumLength // agregamos duración al objeto
+      };
     },
 
     async getGenres() {

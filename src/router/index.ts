@@ -4,6 +4,7 @@ import Overview from '../components/views/Overview.vue';
 import Landing from '../components/views/Landing.vue';
 import ArtistsView from '../components/views/ArtistsView.vue';
 import SongsView from '../components/views/SongsView.vue';
+import AlbumsView from '../components/views/AlbumsView.vue';
 
 const routes = [
   {
@@ -29,7 +30,7 @@ const routes = [
   {
     path: '/albums',
     name: 'albums',
-    component: Overview,
+    component: AlbumsView,
   },
   {
     path: '/genres',

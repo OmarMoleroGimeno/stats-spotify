@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @font-face {
     font-family: 'ClashDisplay-Variable';
     src: url('./assets/fonts/ClashDisplay-Variable.woff2') format('woff2'),
@@ -16,10 +17,6 @@
     color: white;
     font-family: ClashDisplay-Variable;
 }
-
-
-
-
 
 @layer base {
   :root {
