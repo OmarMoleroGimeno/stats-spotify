@@ -155,24 +155,24 @@ watch(albumImageUrl, () => {
 </script>
 <style>
 .custom-scroll::-webkit-scrollbar {
-  width: 6px;               /* ancho estrecho */
+  width: 6px;
 }
 
 .custom-scroll::-webkit-scrollbar-track {
-  background: transparent;  /* sin fondo */
+  background: transparent;
 }
 
 .custom-scroll::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3); /* solo el "thumb" visible */
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 4px;
 }
 
 .custom-scroll:hover::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.5); /* más visible al hacer hover */
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .custom-scroll {
-  scrollbar-width: thin;             /* Firefox */
+  scrollbar-width: thin;
   scrollbar-color: rgba(255,255,255,0.3) transparent;
 }
 
