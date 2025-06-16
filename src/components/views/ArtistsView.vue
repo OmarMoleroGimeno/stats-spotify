@@ -2,8 +2,8 @@
   <section class="flex flex-col items-center justify-center space-y-12 mt-32">
     <h1 class="text-[50px] whitespace-nowrap">Top Artists</h1>
     <div class="w-full max-w-[80vw] space-y-24">
-      <Carousel :opts="{ align: 'start' }">
-        <CarouselContent class="cursor-grab  ">
+      <Carousel :opts="{ align: 'start', slidesToScroll: 5 }">
+        <CarouselContent class="cursor-grab">
           <CarouselItem
                 v-for="(artist, index) in store.artists.items"
                 :key="artist.id || index"
