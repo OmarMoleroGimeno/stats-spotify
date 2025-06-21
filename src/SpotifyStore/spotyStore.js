@@ -118,7 +118,7 @@ export const spotyStore = defineStore('store', {
         await this.getAlbums();
         await this.initPlayer();
         this.trackShowing = this.tracks?.items?.[0];
-        await this.getAlbumDetails(this.albums?.[1]?.id);
+        await this.getAlbumDetails(this.albums?.[0]?.id);
       } catch (error) {
         console.error("Error en onInit:", error);
         this.LogOut();
