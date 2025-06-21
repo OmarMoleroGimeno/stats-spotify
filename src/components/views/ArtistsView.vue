@@ -1,5 +1,5 @@
 <template>
-  <section class="flex flex-col items-center justify-center space-y-12 mt-32">
+  <section class="flex flex-col items-center justify-center space-y-12 mt-24 mdx:mt-32">
     <h1 class="text-[50px] whitespace-nowrap">Top Artists</h1>
     <div class="w-full max-w-[80vw] space-y-24 flex justify-center flex-col items-center">
       <Carousel class="max-w-[70vw] mx-auto" v-if="!store.isMobile" :opts="{ align: 'start', slidesToScroll: 5 }">

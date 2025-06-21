@@ -1,6 +1,6 @@
 <template>
 
-  <section class="flex flex-col items-center justify-center mdx:py-20 text-center mt-20 space-y-24 py-0 px-4">
+  <section class="flex flex-col items-center justify-center mdx:py-20 text-center mt-32 space-y-24 py-0 px-4">
     <!-- Artistas y Canciones -->
     <div class="flex flex-col mdx:flex-row justify-center items-center mdx:items-start gap-12 mdx:gap-24 w-full max-w-6xl">
       <!-- Top Artists -->
