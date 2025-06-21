@@ -37,7 +37,9 @@
         >
           <span class="w-6 text-lg font-bold opacity-80">{{ index + 1 }}.</span>
           <img :src="artist.images[0]?.url" class="ml-4 h-10 w-10 z-10 rounded-full object-cover" alt="image artist">
-          <span class="ml-4 text-white truncate text-lg cursor-pointer">{{ artist.name }}</span>
+          <Button variant="link" class="text-lg text-white" @click="openArtist(artist.external_urls.spotify)">
+            {{ artist.name }}
+          </Button>
         </li>
       </ul>
       
@@ -56,6 +58,11 @@
 <script setup>
 import { spotyStore } from '../../SpotifyStore/spotyStore.js';
 import BorderBeam from '../ui/border-beam/BorderBeam.vue';
+import { Button } from '@/components/ui/button';
 
 const store = spotyStore();
+
+function openArtist(uri) {
+  window.open(uri);
+}
 </script>

@@ -3,11 +3,14 @@
     <h1 class="text-[50px] whitespace-nowrap">Top Artists</h1>
     <div class="w-full max-w-[80vw] space-y-24">
       <Carousel :opts="{ align: 'start', slidesToScroll: 5 }">
+        
+      <div class="pointer-events-none absolute top-0 left-0 h-full w-10 z-40 bg-gradient-to-r from-black to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 right-0 h-full w-10 z-40 bg-gradient-to-l from-black to-transparent"></div>
         <CarouselContent class="cursor-grab">
           <CarouselItem
                 v-for="(artist, index) in store.artists.items"
                 :key="artist.id || index"
-                class="p-4 md:basis-[40%] lg:basis-[20%]"
+                class="p-4 pl-8 md:basis-[40%] lg:basis-[20%]"
                 >
                 <FlipCard>
                     <template #default>
