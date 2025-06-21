@@ -1,17 +1,16 @@
 <template>
-  <section class="flex flex-col items-center justify-center space-y-12 mt-32">
+  <section class="flex flex-col items-center justify-center space-y-12 mt-24 mdx:mt-32">
     <h1 class="text-[50px] whitespace-nowrap">Top Albums</h1>
 
     <transition name="fade" mode="out-in">
       <div 
         :key="albumImageUrl"
-        class="border-[1px] border-white border-radius rounded-xl max-w-5xl w-full"
+        class="max-w-5xl w-full px-4"
       >
         <div 
-          class="flex flex-col md:flex-row transition-colors duration-500 relative rounded-xl"
+          class="flex flex-col md:flex-row border-[1px] border-white border-radius transition-colors duration-500 relative rounded-xl"
           :style="{ backgroundColor: bgColor, color: textColor }"
         >
-          <!-- Aquí sigue tu contenido tal cual -->
           <!-- Imagen con gradiente dinámico según pantalla -->
           <div class="relative w-full md:w-[500px] flex-shrink-0">
             <img 
@@ -37,7 +36,7 @@
 
             <div
               v-if="albumTraks.items.length > 0"
-              class="mb-4 overflow-auto max-h-64 md:max-h-64 md:flex md:flex-wrap md:gap-x-6 md:gap-y-2 custom-scroll"
+              class="mb-4 overflow-auto max-h-48 md:max-h-64 md:flex md:flex-wrap md:gap-x-6 md:gap-y-2 custom-scroll"
             >
               <ol class="list-none md:flex md:flex-wrap p-0 m-0 w-full max-w-[470px]">
                 <li
@@ -51,12 +50,14 @@
               </ol>
             </div>
 
-            <div class="flex flex-col items-end space-y-1 absolute bottom-4 right-4"
+            <div
+              class="flex flex-col items-end space-y-1 mt-4 md:mt-0 md:absolute md:bottom-4 md:right-4"
               :style="{ color: textColor }"
             >
               <p>Release Date: <span class="ml-2">{{ albumReleaseDate }}</span></p>
               <p>Album length: <span class="ml-2">{{ albumLength }}'</span></p>
             </div>
+
           </div>
         </div>
       </div>
@@ -64,6 +65,7 @@
     <div class="w-full">
 
       <Carousel
+      v-if="!store.isMobile"
       class="relative w-full max-w-4xl mx-auto"
       :opts="{
         align: 'start',
@@ -99,6 +101,39 @@
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
+      <Carousel
+      v-if="store.isMobile"
+      class="relative w-full max-w-4xl mx-auto"
+      :opts="{
+        align: 'start',
+        slidesToScroll: 1
+      }"
+      >
+      <div class="pointer-events-none absolute top-0 left-0 h-full w-16 z-40 bg-gradient-to-r from-black to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 right-0 h-full w-16 z-40 bg-gradient-to-l from-black to-transparent"></div>
+        <CarouselContent>
+          <CarouselItem v-for="(album, index) in albums" :key="index" class="relative p-24 md:p-48 ml-[0.75rem]">
+            <div class="p-1">
+              <Card
+                class="cursor-pointer transform z-30 s"
+                @click="store.getAlbumDetails(album.id)"
+              >
+                <CardContent
+                  class="flex aspect-square items-center justify-center p-6 bg-cover bg-center rounded-xl overflow-hidden"
+                  :style="{ backgroundImage: `url(${album.images[0]?.url})` }"
+                >
+                <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+                  <span class="text-xl font-semibold text-white drop-shadow-lg absolute top-4 left-4">
+                    #{{ index + 1 }}
+                  </span>
+                </CardContent>
+              </Card>
+            </div>
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious class="absolute top-1/2 left-2 -translate-y-1/2 z-50" />
+        <CarouselNext class="absolute top-1/2 right-2 -translate-y-1/2 z-50" />
+      </Carousel>
     </div>
     <div class="w-5/6">
       <Table class="text-lg">
@@ -108,10 +143,10 @@
               <TableHead>Rank</TableHead>
               <TableHead>Image</TableHead>
               <TableHead>Name</TableHead>
-              <TableHead>Artists</TableHead>
-              <TableHead>Total Tracks</TableHead>
-              <TableHead>Release Date</TableHead>
-              <TableHead>Label</TableHead>
+              <TableHead v-if="!store.isMobile">Artists</TableHead>
+              <TableHead v-if="!store.isMobile">Total Tracks</TableHead>
+              <TableHead v-if="!store.isMobile">Release Date</TableHead>
+              <TableHead v-if="!store.isMobile">Label</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -127,11 +162,11 @@
                       alt="image artist"
                     />
                   </TableCell>
-                  <TableCell>{{ album.name }}</TableCell>
-                  <TableCell>{{ album.name }}</TableCell>
-                  <TableCell>{{ album.total_tracks }}</TableCell>
-                  <TableCell>{{ album.release_date }}</TableCell>
-                  <TableCell>{{ album.label }}</TableCell>
+                  <TableCell class="truncate max-w-[150px]">{{ album.name }}</TableCell>
+                  <TableCell v-if="!store.isMobile" class="truncate max-w-[150px]">{{ album.name }}</TableCell>
+                  <TableCell v-if="!store.isMobile" class="truncate max-w-[150px]">{{ album.total_tracks }}</TableCell>
+                  <TableCell v-if="!store.isMobile" class="truncate max-w-[150px]">{{ album.release_date }}</TableCell>
+                  <TableCell v-if="!store.isMobile" class="truncate max-w-[150px]">{{ album.label }}</TableCell>
                 </TableRow>
           </TableBody>
         </Table>

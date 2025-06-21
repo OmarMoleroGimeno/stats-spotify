@@ -47,7 +47,9 @@
             <HoverCard>
               <HoverCardTrigger as-child>
                 <Button variant="link" class="text-base md:text-lg text-white" @click="openAlbum(album.external_urls.spotify)">
-                  {{ album.name }}
+                  <span class="truncate max-w-[200px] md:max-w-[300px]">
+                    {{ album.name }}
+                  </span>
                 </Button>
               </HoverCardTrigger>
               <HoverCardContent class="w-full bg-black/60 backdrop-blur-md border border-gray-500 text-white">
@@ -73,7 +75,7 @@
                 </div>
               </HoverCardContent>
             </HoverCard>
-            <span class="pl-4 text-xs md:text-sm text-white/60">
+            <span class="pl-4 text-xs md:text-sm text-white/60 truncate max-w-[200px] md:max-w-[300px]">
               {{ album.artists }}
             </span>
           </div>
