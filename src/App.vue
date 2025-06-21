@@ -4,9 +4,10 @@
     <ParticlesBg :quantity="150" class="fixed inset-0 z-0" />
 
     <!-- Header siempre visible -->
-    <header class="fixed top-0 left-0 w-full z-20">
-      <Header />
-    </header>
+    <header v-if="!store.loading" class="fixed top-0 left-0 w-full z-20">
+    <Header v-if="!isMobile" />
+    <MobileMenu v-else />
+  </header>
 
     <!-- Loader con transición -->
     <transition name="loader-fade" appear>
@@ -39,19 +40,31 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Header from "./components/header/Header.vue";
 import { spotyStore } from "./SpotifyStore/spotyStore.js";
 import ParticlesBg from "./components/ui/particles-bg/ParticlesBg.vue";
 import Loader from "@/components/loader/Loader.vue";
+import MobileMenu from "@/components/mobile-menu/MobileMenu.vue";
 
 const store = spotyStore();
+const isMobile = ref(false);
+
+const checkScreenSize = () => {
+  isMobile.value = window.innerWidth < 1100;
+}
 
 onMounted(async () => {
   if (localStorage.getItem("spotify_token")) {
     await store.onInit();
   }
+  checkScreenSize()
+  window.addEventListener('resize', checkScreenSize)
 });
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkScreenSize)
+})
 </script>
 
 <style>
