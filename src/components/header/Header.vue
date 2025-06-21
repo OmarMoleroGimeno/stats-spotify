@@ -38,10 +38,8 @@ function handleScroll() {
   const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
   if (currentScroll > lastScroll && currentScroll > 50) {
-    // Scroll hacia abajo -> ocultar barra
     isVisible.value = false;
   } else {
-    // Scroll hacia arriba -> mostrar barra
     isVisible.value = true;
   }
 
