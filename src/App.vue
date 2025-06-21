@@ -5,7 +5,7 @@
 
     <!-- Header siempre visible -->
     <header v-if="!store.loading" class="fixed top-0 left-0 w-full z-20">
-    <Header v-if="!isMobile" />
+    <Header v-if="!store.isMobile" />
     <MobileMenu v-else />
   </header>
 
@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { onMounted, onBeforeUnmount } from 'vue';
 import Header from "./components/header/Header.vue";
 import { spotyStore } from "./SpotifyStore/spotyStore.js";
 import ParticlesBg from "./components/ui/particles-bg/ParticlesBg.vue";
@@ -48,23 +48,17 @@ import Loader from "@/components/loader/Loader.vue";
 import MobileMenu from "@/components/mobile-menu/MobileMenu.vue";
 
 const store = spotyStore();
-const isMobile = ref(false);
-
-const checkScreenSize = () => {
-  isMobile.value = window.innerWidth < 1100;
-}
 
 onMounted(async () => {
   if (localStorage.getItem("spotify_token")) {
     await store.onInit();
   }
-  checkScreenSize()
-  window.addEventListener('resize', checkScreenSize)
+  store.initializeUi();
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkScreenSize)
-})
+  store.destroyUi();
+});
 </script>
 
 <style>
