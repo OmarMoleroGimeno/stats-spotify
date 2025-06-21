@@ -1,15 +1,15 @@
 <template>
   <div
-    class="relative flex flex-col justify-start items-center w-[29.5rem] overflow-hidden rounded-2xl border-2 border-white/30 backdrop-blur-sm shadow-[0_0_20px_#1DB95466]"
+    class="relative flex flex-col justify-start items-center w-full max-w-[29.5rem] overflow-hidden rounded-2xl border-2 border-white/30 backdrop-blur-sm shadow-[0_0_20px_#1DB95466] px-4 md:px-0"
   >
     <div class="p-6 rounded-2xl w-full">
       <!-- Imágenes de los 3 primeros artistas -->
-      <div class="relative flex items-center justify-center gap-4 mb-6">
+      <div class="relative flex md:flex-row items-center justify-center gap-4 mb-6">
         <!-- Segundo lugar -->
         <img
           v-if="store.albums[1]?.images?.[0]"
           :src="store.albums[1]?.images?.[0].url"
-          class="h-24 w-24 rounded-sm object-cover border-2 border-white/40 shadow-md"
+          class="h-16 w-16 md:h-24 md:w-24 rounded-sm object-cover border-2 border-white/40 shadow-md"
           alt="2nd Album"
         />
 
@@ -17,7 +17,7 @@
         <img
           v-if="store.albums[0]?.images?.[0]"
           :src="store.albums[0]?.images?.[0].url"
-          class="h-32 w-32 rounded-sm object-cover border-2 border-white shadow-md"
+          class="h-24 w-24 md:h-32 md:w-32 rounded-sm object-cover border-2 border-white shadow-md"
           alt="1r Album"
         />
 
@@ -25,7 +25,7 @@
         <img
           v-if="store.albums[2]?.images?.[0]"
           :src="store.albums[2]?.images?.[0].url"
-          class="h-24 w-24 rounded-sm object-cover border-2 border-white/40 shadow-md z-0"
+          class="h-16 w-16 md:h-24 md:w-24 rounded-sm object-cover border-2 border-white/40 shadow-md z-0"
           alt="3rd Album"
         />
       </div>
@@ -35,14 +35,18 @@
         <li
           v-for="(album, index) in store.albums.slice(0, 10)"
           :key="album.id"
-          class="flex items-center py-2 h-[81px] text-white text-2xl"
+          class="flex items-center py-2 h-[60px] md:h-[81px] text-white"
         >
-          <span class="w-6 text-lg font-bold opacity-80">{{ index + 1 }}.</span>
-          <img :src="album.images[0].url" class="ml-4 h-10 w-10 z-10 rounded-sm object-cover" alt="image artist">
-          <div class="flex flex-col items-start">
+          <span class="w-6 text-base md:text-lg font-bold opacity-80">{{ index + 1 }}.</span>
+          <img
+            :src="album.images[0].url"
+            class="ml-4 h-8 w-8 md:h-10 md:w-10 z-10 rounded-sm object-cover"
+            alt="image artist"
+          />
+          <div class="flex flex-col items-start ml-4">
             <HoverCard>
               <HoverCardTrigger as-child>
-                <Button variant="link" class="text-lg text-white" @click="openAlbum(album.external_urls.spotify)">
+                <Button variant="link" class="text-base md:text-lg text-white" @click="openAlbum(album.external_urls.spotify)">
                   {{ album.name }}
                 </Button>
               </HoverCardTrigger>
@@ -69,7 +73,7 @@
                 </div>
               </HoverCardContent>
             </HoverCard>
-            <span class="pl-4 text-sm text-white/60">
+            <span class="pl-4 text-xs md:text-sm text-white/60">
               {{ album.artists }}
             </span>
           </div>

@@ -1,15 +1,17 @@
 <template>
   <!-- Burger -->
-   <Transition
-    name="slide-fade"
-    appear
-  >
-    <label class="burger absolute top-4 right-4 z-50" for="burger">
-      <input type="checkbox" id="burger" class="hidden" v-model="open" />
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
+   <Transition name="slide-fade" appear>
+    <div>
+      <label class="burger absolute top-8 right-4 z-50" for="burger">
+        <input type="checkbox" id="burger" class="hidden" v-model="open" />
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <div class="profile-wrapper absolute top-4 left-4 z-50">
+        <Profile v-if="store.userProfile.email" />
+      </div>
+    </div>
   </Transition>
 
   <!-- Slide-in menu -->
@@ -35,14 +37,17 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
+import { ref, watch, onMounted } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { spotyStore } from '@/SpotifyStore/spotyStore.js';
+import Profile from "@/components/profile/Profile.vue";
 
 const userData = ['Overview', 'Artists', 'Songs', 'Albums', 'Genres', 'Festival']
-const selected = ref(0)
-const open = ref(false)
-const router = useRouter()
-const route = useRoute()
+const selected = ref(0);
+const open = ref(false);
+const router = useRouter();
+const route = useRoute();
+const store = spotyStore();
 
 function redirect(index, data) {
   selected.value = index
@@ -84,8 +89,6 @@ watch(() => route.path, () => {
   cursor: pointer;
   display: block;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
   z-index: 50;
   overflow: visible;
 }

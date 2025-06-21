@@ -19,10 +19,24 @@ export const spotyStore = defineStore('store', {
     volume: 0.01,
     term: 'long_term',
     albumShowing: {},
+    isMobile: false,
   }),
   actions: {
     setLoading(value) {
       this.loading = value;
+    },
+
+    checkScreenSize() {
+      this.isMobile = window.innerWidth < 1100;
+    },
+
+    initializeUi() {
+      this.checkScreenSize();
+      window.addEventListener('resize', this.checkScreenSize);
+    },
+
+    destroyUi() {
+      window.removeEventListener('resize', this.checkScreenSize);
     },
 
     LogOut() {
