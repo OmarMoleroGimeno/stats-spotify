@@ -1,8 +1,8 @@
 <template>
   <section class="flex flex-col items-center justify-center space-y-12 mt-32">
     <h1 class="text-[50px] whitespace-nowrap">Top Artists</h1>
-    <div class="w-full max-w-[80vw] space-y-24">
-      <Carousel :opts="{ align: 'start', slidesToScroll: 5 }">
+    <div class="w-full max-w-[80vw] space-y-24 flex justify-center flex-col items-center">
+      <Carousel class="max-w-[70vw] mx-auto" v-if="!store.isMobile" :opts="{ align: 'start', slidesToScroll: 5 }">
         
       <div class="pointer-events-none absolute top-0 left-0 h-full w-10 z-40 bg-gradient-to-r from-black to-transparent"></div>
       <div class="pointer-events-none absolute top-0 right-0 h-full w-10 z-40 bg-gradient-to-l from-black to-transparent"></div>
@@ -14,7 +14,55 @@
                 >
                 <FlipCard>
                     <template #default>
-                    <div class="relative w-full h-64 md:h-72 lg:h-80 rounded-2xl overflow-hidden">
+                    <div class="relative w-full h-full md:h-72 lg:h-80 rounded-2xl overflow-hidden">
+                      <img
+                        :src="artist.images[0]?.url"
+                        class="w-full h-full object-cover"
+                        :alt="artist.name"
+                      />
+                      <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                    </div>
+                    <div class="absolute top-2 right-2 text-white font-bold text-lg bpx-2 py-1 rounded-md select-none">
+                        #{{ index + 1 }}
+                    </div>
+                    <div class="absolute bottom-4 left-4 text-xl font-bold text-white">
+                        {{ artist.name }}
+                    </div>
+                    </template>
+                    <template #back>
+                    <div class="flex min-h-full flex-col gap-2 p-4">
+                        <h1 class="text-xl font-bold text-white">{{ artist.name }}</h1>
+                        <p
+                        class="mt-1 border-t border-t-gray-200 py-4 text-base font-medium leading-normal text-gray-100"
+                        >
+                        Followers: {{ artist.followers.total.toLocaleString('de-DE') || 'N/A' }}
+                        </p>
+                    </div>
+                    </template>
+                </FlipCard>
+            </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious />
+        <CarouselNext />
+      </Carousel>
+
+      <Carousel
+        v-if="store.isMobile"
+        class="w-full max-w-xs mx-auto"
+        :opts="{ align: 'center', slidesToScroll: 1 }"
+      >
+        
+      <div class="pointer-events-none absolute top-0 left-0 h-full w-10 z-40 bg-gradient-to-r from-black to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 right-0 h-full w-10 z-40 bg-gradient-to-l from-black to-transparent"></div>
+        <CarouselContent class="cursor-grab">
+          <CarouselItem
+                v-for="(artist, index) in store.artists.items"
+                :key="artist.id || index"
+                class="p-4 pl-[4rem] basis-[300px]"
+                >
+                <FlipCard>
+                    <template #default>
+                    <div class="relative w-full h-full md:h-72 lg:h-80 rounded-2xl overflow-hidden">
                       <img
                         :src="artist.images[0]?.url"
                         class="w-full h-full object-cover"
@@ -51,9 +99,9 @@
           <TableRow class="hover:bg-transparent">
             <TableHead>Rank</TableHead>
             <TableHead>Image</TableHead>
-            <TableHead>Name</TableHead>
-            <TableHead>Followers</TableHead>
-            <TableHead>Popularity</TableHead>
+            <TableHead v-if="!store.isMobile">Name</TableHead>
+            <TableHead v-if="!store.isMobile">Followers</TableHead>
+            <TableHead v-if="!store.isMobile">Popularity</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -71,8 +119,8 @@
                   />
                 </TableCell>
                 <TableCell>{{ artist.name }}</TableCell>
-                <TableCell>{{ artist.followers.total.toLocaleString('de-DE') || 'N/A' }}</TableCell>
-                <TableCell><Progress :model-value="artist.popularity" class="h-2 bg-muted/30 [&>div]:bg-[#1DB954]" /></TableCell>
+                <TableCell v-if="!store.isMobile">{{ artist.followers.total.toLocaleString('de-DE') || 'N/A' }}</TableCell>
+                <TableCell v-if="!store.isMobile"><Progress :model-value="artist.popularity" class="h-2 bg-muted/30 [&>div]:bg-[#1DB954]" /></TableCell>
               </TableRow>
             </DialogTrigger>
             <DialogContent class="bg-transparent bg border-white/30 backdrop-blur-lg text-white">

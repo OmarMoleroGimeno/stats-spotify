@@ -20,7 +20,7 @@ const { orientation, canScrollPrev, scrollPrev } = useCarousel()
       'hover:bg-neutral-800 hover:text-white',
       'disabled:opacity-50 disabled:cursor-not-allowed transition-colors',
       orientation === 'horizontal'
-        ? '-left-12 top-1/2 -translate-y-1/2'
+        ? '-left-8 top-1/2 -translate-y-1/2'
         : '-top-12 left-1/2 -translate-x-1/2 rotate-90',
       props.class,
     )"
