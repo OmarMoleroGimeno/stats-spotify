@@ -30,7 +30,7 @@
           class="flex items-center py-2 h-[60px] md:h-[77.3px] text-white"
         >
           <span class="w-6 text-base md:text-lg font-bold opacity-80">{{ index + 1 }}.</span>
-          <span class="ml-4 truncate text-base md:text-lg">
+          <span class="ml-4 truncate max-w-[200px] md:max-w-[300px] text-base md:text-lg ">
             {{ genere.genre.charAt(0).toUpperCase() + genere.genre.slice(1) }}
           </span>
           <AnimatedCircularProgressBar
