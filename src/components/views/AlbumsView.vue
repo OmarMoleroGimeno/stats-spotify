@@ -5,10 +5,10 @@
     <transition name="fade" mode="out-in">
       <div 
         :key="albumImageUrl"
-        class="border-4 border-white max-w-5xl w-full"
+        class="border-[1px] border-white border-radius rounded-xl max-w-5xl w-full"
       >
         <div 
-          class="flex flex-col md:flex-row transition-colors duration-500 relative" 
+          class="flex flex-col md:flex-row transition-colors duration-500 relative rounded-xl"
           :style="{ backgroundColor: bgColor, color: textColor }"
         >
           <!-- Aquí sigue tu contenido tal cual -->
@@ -17,7 +17,7 @@
             <img 
               ref="albumCover"
               :src="albumImageUrl" 
-              class="w-full h-full object-cover"
+              class="w-full h-full object-cover rounded-xl"
               @load="extractColors"
               crossorigin="anonymous"
             >
@@ -54,15 +54,15 @@
             <div class="flex flex-col items-end space-y-1 absolute bottom-4 right-4"
               :style="{ color: textColor }"
             >
-              <p>Release Date: {{ albumReleaseDate }}</p>
-              <p>Album length: {{ albumLength }}</p>
-              <p></p>
+              <p>Release Date: <span class="ml-2">{{ albumReleaseDate }}</span></p>
+              <p>Album length: <span class="ml-2">{{ albumLength }}'</span></p>
             </div>
           </div>
         </div>
       </div>
     </transition>
     <div class="w-full">
+
       <Carousel
       class="relative w-full max-w-4xl mx-auto"
       :opts="{
@@ -70,6 +70,8 @@
         slidesToScroll: 3
       }"
       >
+      <div class="pointer-events-none absolute top-0 left-0 h-full w-16 z-40 bg-gradient-to-r from-black to-transparent"></div>
+      <div class="pointer-events-none absolute top-0 right-0 h-full w-16 z-40 bg-gradient-to-l from-black to-transparent"></div>
         <CarouselContent>
           <CarouselItem v-for="(album, index) in albums" :key="index" class="md:basis-1/2 lg:basis-1/3 relative p-8"
           :class="{ 'cursor-grabbing': isDragging, 'cursor-grab': !isDragging }"
@@ -86,7 +88,7 @@
                   :style="{ backgroundImage: `url(${album.images[0]?.url})` }"
                 >
                 <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-                  <span class="text-xl font-semibold text-white drop-shadow-lg absolute top-4 left-8">
+                  <span class="text-xl font-semibold text-white drop-shadow-lg absolute top-4 left-4">
                     #{{ index + 1 }}
                   </span>
                 </CardContent>
@@ -98,6 +100,42 @@
         <CarouselNext />
       </Carousel>
     </div>
+    <div class="w-5/6">
+      <Table class="text-lg">
+          <TableCaption>Top {{ albumsLenght }} albums</TableCaption>
+          <TableHeader>
+            <TableRow class="hover:bg-transparent">
+              <TableHead>Rank</TableHead>
+              <TableHead>Image</TableHead>
+              <TableHead>Name</TableHead>
+              <TableHead>Artists</TableHead>
+              <TableHead>Total Tracks</TableHead>
+              <TableHead>Release Date</TableHead>
+              <TableHead>Label</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+                <TableRow
+                  class="hover:bg-[hsl(var(--muted)/0.2)] transition-colors"
+                  v-for="(album, index) in albums"
+                >
+                <TableCell>#{{ index + 1 }}</TableCell>
+                  <TableCell>
+                    <img
+                      :src="album.images[0]?.url"
+                      class="ml-4 h-10 w-10 z-10 rounded-full object-cover"
+                      alt="image artist"
+                    />
+                  </TableCell>
+                  <TableCell>{{ album.name }}</TableCell>
+                  <TableCell>{{ album.name }}</TableCell>
+                  <TableCell>{{ album.total_tracks }}</TableCell>
+                  <TableCell>{{ album.release_date }}</TableCell>
+                  <TableCell>{{ album.label }}</TableCell>
+                </TableRow>
+          </TableBody>
+        </Table>
+    </div>
   </section>
 </template>
 <script setup>
@@ -106,6 +144,7 @@ import { FastAverageColor } from 'fast-average-color';
 import { spotyStore } from '../../SpotifyStore/spotyStore.js';
 import { Card, CardContent } from '@/components/ui/card';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const store = spotyStore();
 
@@ -113,11 +152,15 @@ const isDragging = ref(false)
 
 const albumImageUrl = computed(() => store?.albumShowing?.images?.[0]?.url);
 const albumTitle = computed(() => store?.albumShowing?.name || '');
-const albumArtist = computed(() => store?.albumShowing?.artists?.[0]?.name || '');
+const albumArtist = computed(() => {
+  const artists = store?.albumShowing?.artists || [];
+  return artists.map(artist => artist.name).join(', ');
+});
 const albumReleaseDate = computed(() => store?.albumShowing?.release_date || '');
 const albumLength = computed(() => store?.albumShowing?.albumLength || '');
 const albumTraks = computed(() => store?.albumShowing?.tracks || { items: [] });
 const albums = computed(() => store?.albums || '');
+const albumsLenght = computed(() => store?.albums?.length || 0);
 
 const albumCover = ref(null);
 const bgColor = ref('rgba(255, 255, 255, 0.1)');

@@ -42,7 +42,7 @@
           <div class="flex flex-col items-start">
             <HoverCard>
               <HoverCardTrigger as-child>
-                <Button variant="link" class="text-lg text-white">
+                <Button variant="link" class="text-lg text-white" @click="openAlbum(album.external_urls.spotify)">
                   {{ album.name }}
                 </Button>
               </HoverCardTrigger>
@@ -97,4 +97,7 @@ import { Button } from '@/components/ui/button'
 import {HoverCard,HoverCardContent,HoverCardTrigger} from '@/components/ui/hover-card'
 
 const store = spotyStore();
+function openAlbum(uri) {
+  window.open(uri);
+}
 </script>
