@@ -20,6 +20,7 @@ export const spotyStore = defineStore('store', {
     term: 'long_term',
     albumShowing: {},
     isMobile: false,
+    isLaptop: false,
   }),
   actions: {
     setLoading(value) {
@@ -27,6 +28,7 @@ export const spotyStore = defineStore('store', {
     },
 
     checkScreenSize() {
+      this.isLaptop = window.innerWidth <= 1600;
       this.isMobile = window.innerWidth < 1100;
     },
 
@@ -130,7 +132,7 @@ export const spotyStore = defineStore('store', {
         await this.getGenres();
         await this.getPlaylists();
         await this.getAlbums();
-        await this.initPlayer();
+        this.userProfile?.product === 'premium' ? await this.initPlayer() : null;
         this.trackShowing = this.tracks?.items?.[0];
         await this.getAlbumDetails(this.albums?.[0]?.id);
       } catch (error) {
@@ -200,7 +202,6 @@ export const spotyStore = defineStore('store', {
 
     async playTrack(trackUri) {
       if (!this.deviceId) {
-        console.error("Device ID no disponible aún");
         return;
       }
 
@@ -318,24 +319,38 @@ export const spotyStore = defineStore('store', {
     },
 
     async getGenres() {
-      const allGenres = this.artists.items.flatMap(artist => artist.genres);
+  const allGenres = this.artists.items.flatMap(artist => artist.genres);
 
-      const genreCount = allGenres.reduce((acc, genre) => {
-        acc[genre] = (acc[genre] || 0) + 1;
-        return acc;
-      }, {});
+  const genreData = {};
 
-      const totalGenres = allGenres.length;
+  this.artists.items.forEach(artist => {
+    artist.genres.forEach(genre => {
+      if (!genreData[genre]) {
+        genreData[genre] = {
+          count: 0,
+          totalPopularity: 0,
+          totalFollowers: 0
+        };
+      }
+      genreData[genre].count++;
+      genreData[genre].totalPopularity += artist.popularity || 0;
+      genreData[genre].totalFollowers += artist.followers.total || 0;
+    });
+  });
 
-      this.genres = Object.entries(genreCount)
-        .sort(([, aCount], [, bCount]) => bCount - aCount)
-        .slice(0, 50)
-        .map(([genre, count]) => ({
-          genre,
-          count,
-          percentage: Number(((count / totalGenres) * 100).toFixed(2))
-        }));
-    },
+  const totalGenres = allGenres.length;
+
+  this.genres = Object.entries(genreData)
+    .sort(([, aData], [, bData]) => bData.count - aData.count)
+    .slice(0, 50)
+    .map(([genre, data]) => ({
+      genre,
+      count: data.count,
+      percentage: Number(((data.count / totalGenres) * 100).toFixed(2)),
+      avgPopularity: Number((data.totalPopularity / data.count).toFixed(2)),
+      avgFollowers: Math.round(data.totalFollowers / data.count)
+    }));
+},
 
     async getPlaylists() {
       const response = await fetch("https://api.spotify.com/v1/me/playlists", {

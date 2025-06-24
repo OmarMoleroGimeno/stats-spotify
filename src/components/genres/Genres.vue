@@ -69,7 +69,7 @@ const store = spotyStore();
 
 const donutData = computed(() => {
   if (!store.genres || store.genres.length === 0) return [];
-  return store.genres.map(g => ({
+  return store.genres.slice(0,10).map(g => ({
     name: g.genre,
     total: g.percentage
   }));

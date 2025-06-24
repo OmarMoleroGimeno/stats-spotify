@@ -17,7 +17,7 @@
 
       <!-- Botón alineado a la derecha -->
       <div>
-        <Profile v-if="store.userProfile.email" />
+        <Profile />
       </div>
     </section>
   </Transition>

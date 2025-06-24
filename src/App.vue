@@ -4,7 +4,7 @@
     <ParticlesBg :quantity="150" class="fixed inset-0 z-0" />
 
     <!-- Header siempre visible -->
-    <header v-if="!store.loading" class="fixed top-0 left-0 w-full z-20">
+    <header v-if="!store.loading && store.token !== null" class="fixed top-0 left-0 w-full z-20">
     <Header v-if="!store.isMobile" />
     <MobileMenu v-else />
   </header>
@@ -28,7 +28,7 @@
   <!-- Scroll to top button -->
   <ScrollTop icon="pi pi-arrow-up" />
 
-<footer v-if="!store.loading" class="relative z-50 text-white py-4 flex flex-col items-center bg-black/40 backdrop-blur-md">
+<footer v-if="!store.loading && route.path !== '/festival'" class="relative z-50 text-white py-4 flex flex-col items-center bg-black/40 backdrop-blur-md">
   <div class="w-4/5  h-px bg-white/30 mb-3"></div>
   <div class="flex justify-start w-4/5 px-12">
     <p>Created by: Omar Molero Gimeno</p>
@@ -46,8 +46,10 @@ import { spotyStore } from "./SpotifyStore/spotyStore.js";
 import ParticlesBg from "./components/ui/particles-bg/ParticlesBg.vue";
 import Loader from "@/components/loader/Loader.vue";
 import MobileMenu from "@/components/mobile-menu/MobileMenu.vue";
+import { useRoute } from 'vue-router';
 
 const store = spotyStore();
+const route = useRoute();
 
 onMounted(async () => {
   if (localStorage.getItem("spotify_token")) {

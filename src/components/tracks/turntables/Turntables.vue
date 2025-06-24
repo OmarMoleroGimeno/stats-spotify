@@ -1,32 +1,41 @@
 <template>
-  <div class="h-[500px] w-[500px] bg-neutral-800 flex justify-center items-center rounded-[20px] relative shadow-2xl">
-    
-    <VolumnSlider class="absolute bottom-4 left-4"></VolumnSlider>
-    <div 
-      ref="vinylRef" 
+  <div
+    class="relative w-full max-w-[500px] aspect-square bg-neutral-800 flex justify-center items-center rounded-[20px] shadow-2xl mx-auto"
+  >
+    <!-- Slider -->
+    <VolumnSlider v-if="store?.userProfile?.product === 'premium'" class="absolute bottom-2 left-2 md:bottom-4 md:left-4" />
+
+    <!-- Vinilo giratorio -->
+    <div
+      ref="vinylRef"
       :style="{ transform: `rotate(${rotation}deg)` }"
+      class="w-[80%] h-[80%] max-w-[400px] max-h-[400px]"
     >
       <transition name="vinyl-transition" mode="out-in">
-        <div :key="track.id" class="h-[400px] w-[400px] bg-black rounded-full relative">
+        <div :key="track.id" class="w-full h-full bg-black rounded-full relative">
           <!-- Anillos del vinilo -->
           <div class="absolute inset-0 rounded-full border-[5px] border-white/40"></div>
           <div class="absolute inset-8 rounded-full border-[3px] border-white/20"></div>
           <div class="absolute inset-16 rounded-full border-[1px] border-white/10"></div>
 
+          <!-- Imagen del álbum -->
           <img
             v-if="store.trackShowing?.album"
             :src="track.album.images[0].url"
             alt="Album"
-            class="absolute top-1/2 left-1/2 w-32 h-32 rounded-full object-cover transform -translate-x-1/2 -translate-y-1/2 z-10"
-          />    
+            class="absolute top-1/2 left-1/2 w-20 h-20 md:w-32 md:h-32 rounded-full object-cover transform -translate-x-1/2 -translate-y-1/2 z-10"
+          />
           <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-black rounded-full transform -translate-x-1/2 -translate-y-1/2 z-20"></div>
         </div>
       </transition>
     </div>
-    <div class="absolute bottom-6 right-20 bg-green-500 w-8 h-8 rounded-full"></div>
-    <div class="absolute bottom-6 right-8 bg-red-500 w-8 h-8 rounded-full"></div>
+
+    <!-- Botones -->
+    <div class="absolute bottom-4 right-16 bg-green-500 w-6 h-6 md:w-8 md:h-8 rounded-full"></div>
+    <div class="absolute bottom-4 right-4 bg-red-500 w-6 h-6 md:w-8 md:h-8 rounded-full"></div>
   </div>
 </template>
+
 
 <script setup>
 import { spotyStore } from '../../../SpotifyStore/spotyStore';

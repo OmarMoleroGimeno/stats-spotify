@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="store?.userProfile?.product === 'premium'">
     <MusicBar></MusicBar>
     <div class="flex gap-20 items-center justify-center">
       <TooltipProvider>

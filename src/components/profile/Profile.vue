@@ -56,12 +56,6 @@ import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button
 import { SparklesText } from '@/components/ui/sparkles-text';
 import { useRouter } from 'vue-router';
 import { spotyStore } from '../../SpotifyStore/spotyStore';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 
 const store = spotyStore();
 const router = useRouter();

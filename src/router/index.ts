@@ -5,6 +5,8 @@ import Landing from '../components/views/Landing.vue';
 import ArtistsView from '../components/views/ArtistsView.vue';
 import SongsView from '../components/views/SongsView.vue';
 import AlbumsView from '../components/views/AlbumsView.vue';
+import FestivalView from '@/components/views/FestivalView.vue';
+import GenresView from '@/components/views/GenresView.vue';
 
 const routes = [
   {
@@ -35,12 +37,12 @@ const routes = [
   {
     path: '/genres',
     name: 'genres',
-    component: Overview,
+    component: GenresView,
   },
   {
     path: '/festival',
     name: 'festival',
-    component: Overview,
+    component: FestivalView,
   },
 ];
 
