@@ -31,7 +31,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { spotyStore } from '@/SpotifyStore/spotyStore';import { watch } from 'vue';
+import { spotyStore } from '@/SpotifyStore/spotyStore';
+import { watch } from 'vue';
 
 const store = spotyStore();
 watch(() => store.term, () => {
