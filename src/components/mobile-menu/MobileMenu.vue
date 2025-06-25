@@ -1,4 +1,5 @@
 <template>
+  <section>
   <!-- Burger -->
    <Transition name="slide-fade" appear>
     <div>
@@ -33,7 +34,25 @@
         </button>
       </li>
     </ul>
+
+    <!-- Select abajo a la izquierda -->
+    <div class="absolute bottom-4 left-4">
+      <Select v-model="store.term">
+        <SelectTrigger class="w-[150px]">
+          <SelectValue placeholder="Select the time" class="text-white" />
+        </SelectTrigger>
+        <SelectContent class="bg-gray/30 backdrop-blur-sm text-white border-gray-500">
+          <SelectGroup>
+            <SelectLabel>Times</SelectLabel>
+            <SelectItem value="short_term" class="cursor-pointer">4 weeks ago</SelectItem>
+            <SelectItem value="medium_term" class="cursor-pointer">6 months ago</SelectItem>
+            <SelectItem value="long_term" class="cursor-pointer">Last year</SelectItem>
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </div>
   </nav>
+  </section>
 </template>
 
 <script setup>
@@ -41,6 +60,15 @@ import { ref, watch, onMounted } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { spotyStore } from '@/SpotifyStore/spotyStore.js';
 import Profile from "@/components/profile/Profile.vue";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
 const userData = ['Overview', 'Artists', 'Songs', 'Albums', 'Genres', 'Festival']
 const selected = ref(0);
@@ -48,6 +76,10 @@ const open = ref(false);
 const router = useRouter();
 const route = useRoute();
 const store = spotyStore();
+
+watch(() => store.term, () => {
+  store.onInit();
+});
 
 function redirect(index, data) {
   selected.value = index

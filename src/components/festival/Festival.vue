@@ -6,7 +6,7 @@
       class="mb-16 p-6 rounded-lg"
     >
       <h2 class="text-xl font-extrabold text-center mb-8 text-white uppercase drop-shadow-lg">
-        Día {{ index + 1 }}
+        Day {{ index + 1 }}
       </h2>
 
       <!-- Aquí reemplazo la grilla por el texto con líneas -->
