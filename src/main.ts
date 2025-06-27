@@ -7,16 +7,21 @@ import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
 import ScrollTop from 'primevue/scrolltop';
 import 'primeicons/primeicons.css';
+import AnimateOnScroll from 'primevue/animateonscroll';
+import 'animate.css';
 
 const app = createApp(App);
-const pinia = createPinia()
+const pinia = createPinia();
+app.directive('animateonscroll', AnimateOnScroll);
 app.use(PrimeVue, {
     theme: {
-        preset: Aura
+        preset: Aura,
+        options: {
+            cssLayer: false,
+        }
     }
-});;
+});
 app.use(pinia);
 app.use(router);
-app.use(PrimeVue);
 app.component('ScrollTop', ScrollTop);
 app.mount('#app');
