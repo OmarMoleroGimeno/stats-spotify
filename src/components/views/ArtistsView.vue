@@ -169,59 +169,62 @@
                 <TableCell v-if="!store.isMobile"><Progress :model-value="artist.popularity" class="h-2 bg-muted/30 [&>div]:bg-[#1DB954]" /></TableCell>
               </TableRow>
             </DialogTrigger>
-            <DialogContent class="bg-transparent bg border-white/30 backdrop-blur-lg text-white">
-              <FlickeringGrid
-                class="absolute inset-0 z-0 [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
-                :square-size="4"
-                :grid-gap="6"
-                color="#1DB954"
-                :max-opacity="0.3"
-                :flicker-chance="0.1"
-                :width="800"
-                :height="800"
-              />
-              <DialogHeader>
-                <DialogTitle class="text-4xl text-center">{{ artist.name }}</DialogTitle>
-                <DialogDescription class="text-white text-lg flex flex-col items-center justify-center gap-4 z-40 text-center">
-                  <img
-                    :src="artist.images[0]?.url"
-                    class="h-72 w-72 rounded-sm object-cover"
-                    alt="image artist"
+            <DialogContent class="bg-transparent border-white/30 backdrop-blur-lg text-white p-4 sm:p-6 md:p-8 rounded-lg w-[90%]  md:w-[30%] max-w-screen-md mx-auto">
+            <FlickeringGrid
+              class="absolute inset-0 z-0 [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
+              :square-size="4"
+              :grid-gap="6"
+              color="#1DB954"
+              :max-opacity="0.3"
+              :flicker-chance="0.1"
+              :width="800"
+              :height="800"
+            />
+            <DialogHeader class="relative z-40 flex flex-col items-center">
+              <DialogTitle class="text-2xl sm:text-3xl md:text-4xl text-center font-bold mb-4">
+                {{ artist.name }}
+              </DialogTitle>
+              <DialogDescription class="text-white text-base sm:text-lg flex flex-col items-center justify-center gap-4 text-center w-full">
+                <img
+                  :src="artist.images[0]?.url"
+                  class="h-48 w-48 sm:h-60 sm:w-60 md:h-72 md:w-72 rounded-sm object-cover"
+                  alt="image artist"
+                />
+                <p>
+                  Followers:
+                  <span class="pl-2 font-medium">
+                    {{ artist.followers.total.toLocaleString('de-DE') || 'N/A' }}
+                  </span>
+                </p>
+                <p>
+                  Genres:
+                  <span v-if="artist.genres && artist.genres.length">
+                    <span
+                      class="pl-2 font-medium"
+                      v-for="(genre, index) in artist.genres"
+                      :key="genre"
+                    >
+                      {{ genre }}<span v-if="index < artist.genres.length - 1">, </span>
+                    </span>
+                  </span>
+                  <span v-else class="pl-2 font-medium text-gray-400">
+                    No genres available
+                  </span>
+                </p>
+                <div class="w-full max-w-xs sm:max-w-sm md:max-w-md">
+                  <p class="text-left mb-1">Popularity</p>
+                  <Progress
+                    :model-value="artist.popularity"
+                    class="h-2 bg-muted/30 [&>div]:bg-[#1DB954]"
                   />
-                  <p>
-                    Followers:
-                    <span class="pl-2 font-medium">
-                      {{ artist.followers.total.toLocaleString('de-DE') || 'N/A' }}
-                    </span>
+                  <p class="text-sm text-muted-foreground text-right mt-1">
+                    {{ artist.popularity }}/100
                   </p>
-                  <p>
-                    Genres:
-                    <span v-if="artist.genres && artist.genres.length">
-                      <span
-                        class="pl-2 font-medium"
-                        v-for="(genre, index) in artist.genres"
-                        :key="genre"
-                      >
-                        {{ genre }}<span v-if="index < artist.genres.length - 1">, </span>
-                      </span>
-                    </span>
-                    <span v-else class="pl-2 font-medium text-gray-400">
-                      No genres available
-                    </span>
-                  </p>
-                  <div class="w-full max-w-md z-40">
-                    <p class="text-left mb-1">Popularity</p>
-                    <Progress
-                      :model-value="artist.popularity"
-                      class="h-2 bg-muted/30 [&>div]:bg-[#1DB954]"
-                    />
-                    <p class="text-sm text-muted-foreground text-right mt-1">{{ artist.popularity }}/100</p>
-                  </div>
-                </DialogDescription>
-              </DialogHeader>
-              <div class="grid gap-4 py-4">
-              </div>
-            </DialogContent>
+                </div>
+              </DialogDescription>
+            </DialogHeader>
+            <div class="grid gap-4 py-4"></div>
+          </DialogContent>
           </Dialog>
         </TableBody>
       </Table>

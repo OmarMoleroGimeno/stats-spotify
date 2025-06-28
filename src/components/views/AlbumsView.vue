@@ -30,7 +30,7 @@
           </div>
           <!-- Texto del álbum -->
           <div class="flex flex-col p-6 flex-1">
-            <h2 class="text-3xl font-bold">{{ albumTitle }}</h2>
+            <h2 class="text-3xl font-bold truncate">{{ albumTitle }}</h2>
             <p class="text-lg mt-2">{{ albumArtist }}</p>
             <div class="w-full h-[2px] bg-white/30 my-3" :style="{ background: convertToRGBA(textColor, 0.3) }"></div>
 
@@ -38,7 +38,7 @@
               v-if="albumTraks.items.length > 0"
               class="mb-4 overflow-auto max-h-48 md:max-h-64 md:flex md:flex-wrap md:gap-x-6 md:gap-y-2 custom-scroll"
             >
-              <ol class="list-none md:flex md:flex-wrap p-0 m-0 w-full max-w-[470px]">
+              <ol class="list-none md:flex md:flex-wrap p-0 m-0 w-full max-w-[440px]">
                 <li
                   v-for="(track, index) in albumTraks.items"
                   :key="track.id"

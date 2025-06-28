@@ -2,7 +2,7 @@
     <div class="flex flex-row items-center bg-customGray px-[8px] py-[4px] rounded-full border-b-[2px] border-customGreen">
         <Select v-model="store.term">
             <SelectTrigger class="w-[150px] border-none focus:ring-0 focus:outline-none">
-                <SelectValue placeholder="Select the time" class="text-white"/>
+                <SelectValue placeholder="Select the time" class="text-white" aria-label="Select the time"/>
             </SelectTrigger>
             <SelectContent class="bg-gray/30 backdrop-blur-sm text-white border-gray-500 ">
                 <SelectGroup>

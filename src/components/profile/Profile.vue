@@ -1,15 +1,15 @@
 <template>
   <Popover v-model:open="isOpen">
     <PopoverTrigger as-child>
-      <div
+      <button
         :class="[
           'border border-customGreen rounded-full p-1 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-110',
           isOpen ? 'scale-110' : 'scale-100'
         ]"
       >
-        <img v-if="store.userProfile.images?.[0]?.url" :src="store.userProfile.images?.[0]?.url" class="h-12 w-12 rounded-full object-cover" />
-        <img v-else :src="'/default.png'" class="h-12 w-12 rounded-full object-cover" />
-      </div>
+        <img v-if="store.userProfile.images?.[0]?.url" :src="store.userProfile.images?.[0]?.url" class="h-12 w-12 rounded-full object-cover" alt="ProfileImage" />
+        <img v-else :src="'/default.webp'" class="h-12 w-12 rounded-full object-cover" alt="ProfileImage" />
+      </button>
     </PopoverTrigger>
 
     <PopoverContent class="w-auto mr-6 bg-black/70 backdrop-blur-sm border border-gray-700 rounded-xl text-white shadow-sm">

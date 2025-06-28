@@ -3,16 +3,12 @@
     <!-- Header -->
     <header class="fixed top-4 px-4 w-full h-16 lg:px-10 flex items-center z-50">
       <div class="flex items-center space-x-2 z-10">
-        <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-          <!-- Icono Music -->
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-2v13" />
-            <circle cx="6" cy="18" r="3" />
-          </svg>
+        <div class="w-8 h-8  rounded-full flex items-center justify-center">
+          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="text-green-400 icon icon-tabler icons-tabler-filled icon-tabler-guitar-pick"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2c-1.613 0 -2.882 .104 -3.825 .323l-.23 .057c-3.019 .708 -4.945 2.503 -4.945 5.62c0 3.367 1.939 8.274 4.22 11.125c.32 .4 .664 .786 1.03 1.158l.367 .36a4.904 4.904 0 0 0 6.752 .011a15.04 15.04 0 0 0 1.41 -1.528c2.491 -3.113 4.221 -7.294 4.221 -11.126c0 -3.025 -1.813 -4.806 -4.71 -5.562l-.266 -.066c-.936 -.25 -2.281 -.372 -4.024 -.372z" /></svg>
         </div>
         <span class="font-bold text-xl">
           <a href="#" aria-label="Ir al inicio">
-          SpotifyStats
+          Spotify-Stats
           </a>
         </span>
       </div>
@@ -60,16 +56,21 @@
                 <button @click="loginWithSpotify" class="bg-green-500 hover:bg-green-600 text-black font-semibold px-6 gap-4 py-3 rounded inline-flex items-center text-lg hover:scale-105 transition-all">
                   <!-- Play icon -->
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right-dashed"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12h.5m3 0h1.5m3 0h6" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
-                  Conectar con Spotify
+                  Solicitar acceso
                 </button>
               </div>
             </div>
           </div>
-          <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
+          <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
+            <a href="#mockups" aria-label="Ir a cómo funciona" class="flex flex-col items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+              <!-- <span class="text-green-400">Scroll down</span> -->
+            </a>
           </div>
+
+
         </section>
 
         <!-- Mockups section -->
@@ -91,7 +92,7 @@
               <div class="flex items-center w-full">
                 <!-- Datos clave -->
                 <div class="w-1/3 pr-8 text-left space-y-6">
-                  <h3 class="text-3xl font-semibold mb-4">Números que importan</h3>
+                  <h2 class="text-3xl font-semibold mb-4">Números que importan</h2>
                   <div class="space-y-4 text-gray-400">
                     <div>
                       <strong class="text-[#c77dff] text-3xl">
@@ -121,7 +122,7 @@
                 </div>
 
                 <!-- Imagen -->
-                <img src="../../assets/images/mockups.png" alt="Vista en computadora" class="h-auto max-h-[450px] w-2/3 object-contain" />
+                <img src="/mockups.webp" alt="Vista en computadora" class="h-auto max-h-[450px] w-2/3 object-contain" />
               </div>
             </div>
           </div>
@@ -330,5 +331,8 @@ onBeforeUnmount(() => {
 
 html {
   scroll-behavior: smooth;
+}
+.animate-bounce {
+    animation: bounce 2s infinite;
 }
 </style>
