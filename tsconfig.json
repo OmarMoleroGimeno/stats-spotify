@@ -1,15 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2022",         // Aquí defines ECMAScript 2022
-    "module": "ESNext",         // Módulos modernos (para Vite y bundlers)
-    "outDir": "./dist",         // Carpeta salida JS compilado
-    "rootDir": "./src",         // Carpeta origen TS
-    "declaration": true,        // Generar archivos .d.ts (tipos)
-    "sourceMap": false,         // Opcional: no generar sourcemaps
-    "noEmit": false,            // Emitir archivos compilados
-    "moduleResolution": "node", // Resolución de módulos
-    "strict": true,             // Modo estricto TS
-    "esModuleInterop": true     // Interoperabilidad con módulos CommonJS
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "types": ["vite/client"]
   },
-  "include": ["src"]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": ["node_modules"]
 }
