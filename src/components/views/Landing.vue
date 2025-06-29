@@ -1,134 +1,19 @@
 <template>
   <div class="flex flex-col min-h-screen bg-black text-white landing bg-gradient-to-br from-green-600/20 to-black">
     <!-- Header -->
-    <header class="fixed top-4 px-4 w-full h-16 lg:px-10 flex items-center z-50">
-      <div class="flex items-center space-x-2 z-10">
-        <div class="w-8 h-8  rounded-full flex items-center justify-center">
-          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="text-green-400 icon icon-tabler icons-tabler-filled icon-tabler-guitar-pick"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2c-1.613 0 -2.882 .104 -3.825 .323l-.23 .057c-3.019 .708 -4.945 2.503 -4.945 5.62c0 3.367 1.939 8.274 4.22 11.125c.32 .4 .664 .786 1.03 1.158l.367 .36a4.904 4.904 0 0 0 6.752 .011a15.04 15.04 0 0 0 1.41 -1.528c2.491 -3.113 4.221 -7.294 4.221 -11.126c0 -3.025 -1.813 -4.806 -4.71 -5.562l-.266 -.066c-.936 -.25 -2.281 -.372 -4.024 -.372z" /></svg>
-        </div>
-        <span class="font-bold text-xl">
-          <a href="#" aria-label="Ir al inicio">
-          Spotify-Stats
-          </a>
-        </span>
-      </div>
-
-      <nav class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-2 z-0">
-        <a href="#mockups" aria-label="Ir a cómo funciona" class="p-2 bg-transparent backdrop-blur-md rounded-lg hover:bg-[#9b22b6] transition-all duration-300 ease-in-out">
-          <span class="text-lg font-medium">Dispositivos</span>
-        </a>
-        <a href="#features" aria-label="Ir a cómo funciona" class="p-2 bg-transparent backdrop-blur-md rounded-lg hover:bg-[#9b22b6] transition-all duration-300 ease-in-out">
-          <span class="text-lg font-medium">Características</span>
-        </a>
-        <a href="#how-it-works"  aria-label="Ir a features" class="p-2 bg-transparent backdrop-blur-md rounded-lg hover:bg-[#9b22b6] transition-all duration-300 ease-in-out">
-          <span class="text-lg font-medium">Cómo funciona</span>
-        </a>
-      </nav>
-
-      <InteractiveHoverButton :text="'Login'" class="ml-auto z-10" @click="loginWithSpotify()"/>
-    </header>
-
+    <LandingHeader/>
 
     <main class="flex-1">
       <div>
         <!-- Hero Section -->
-        <section class="w-full min-h-screen py-12 md:py-24 lg:py-32 xl:py-48 flex items-center relative">
-          <div class="container px-4 md:px-6 mx-auto">
-            <div class="flex flex-col items-center space-y-4 text-center">
-              <div class="space-y-2 max-w-[1000px]">
-                <span class="inline-block border border-green-500 text-green-400 rounded-full px-3 py-1 text-sm font-semibold">
-                  Conecta con Spotify
-                </span>
-                <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl leading-none">
-                  Descubre tus <span class="text-green-400">estadísticas musicales</span>
-                </h1>
-                <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl leading-non">
-                  como
-                  <TextHighlight class="bg-gradient-to-br from-[#9b22b6] to-[#c77dff]">
-                    nunca antes
-                  </TextHighlight>
-                </h1>
-                <p class="text-gray-300 md:text-xl">
-                  Obtén insights profundos sobre tu música favorita, artistas más escuchados, géneros preferidos y mucho más con nuestras estadísticas personalizadas de Spotify.
-                </p>
-              </div>
-              <div class="space-x-4 flex flex-wrap justify-center">
-                <button @click="loginWithSpotify" class="bg-green-500 hover:bg-green-600 text-black font-semibold px-6 gap-4 py-3 rounded inline-flex items-center text-lg hover:scale-105 transition-all">
-                  <!-- Play icon -->
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right-dashed"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12h.5m3 0h1.5m3 0h6" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
-                  Solicitar acceso
-                </button>
-              </div>
-            </div>
-          </div>
-          <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce">
-            <a href="#mockups" aria-label="Ir a cómo funciona" class="flex flex-col items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-              <!-- <span class="text-green-400">Scroll down</span> -->
-            </a>
-          </div>
+        <Hero/>
 
+        <!-- Acceso limitado -->
+        <LimitedAccess/>
 
-        </section>
 
         <!-- Mockups section -->
-        <section id="mockups" class="w-full min-h-screen py-12 md:py-24 lg:py-32">
-          <div class="container px-4 md:px-6 mx-auto">
-            <div class="flex flex-col items-center justify-center space-y-4 text-center">
-              <div class="space-y-2 max-w-[1000px]" ref="dispositivosWrapper">
-                <h2  v-if="isDispositivosVisible" class="!text-2xl md:!text-4xl lg:!text-5xl font-bold tracking-tight animate__animated animate__bounceInLeft">
-                  Disponible en todos tus <span class="text-[#c77dff]">dispositivos</span>
-                </h2>
-                <p class="text-gray-300 md:text-xl mt-2">
-                  Accede a tus estadísticas desde cualquier lugar, ya sea en tu móvil o computadora.
-                </p>
-              </div>
-            </div>
-
-            <!-- Contenedor para posicionar las imágenes -->
-            <div class="relative flex justify-center mt-12 max-w-7xl mx-auto">
-              <div class="flex items-center w-full">
-                <!-- Datos clave -->
-                <div class="w-1/3 pr-8 text-left space-y-6">
-                  <h2 class="text-3xl font-semibold mb-4">Números que importan</h2>
-                  <div class="space-y-4 text-gray-400">
-                    <div>
-                      <strong class="text-[#c77dff] text-3xl">
-                      +<NumberTicker :value="70" decimalPlaces="0" class="text-[#c77dff]" />M
-                    </strong> 
-                      <span class="text-lg">canciones accesibles</span>
-                    </div>
-                    <div>
-                      <strong class="text-[#c77dff] text-3xl">
-                        <NumberTicker :value="100" decimalPlaces="0" class="text-[#c77dff]" />k+
-                      </strong> 
-                      <span class="text-lg">llamadas a la API al mes</span>
-                    </div>
-                    <div>
-                      <strong class="text-[#c77dff] text-3xl">
-                        <NumberTicker :value="5" decimalPlaces="0" class="text-[#c77dff]" />K+
-                      </strong> 
-                      <span class="text-lg">usuarios activos mensuales</span>
-                    </div>
-                    <div>
-                      <strong class="text-[#c77dff] text-3xl">
-                        <NumberTicker :value="2.05" class="text-[#c77dff]" />s
-                      </strong> 
-                      <span class="text-lg">tiempo de respuesta promedio</span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Imagen -->
-                <img src="/mockups.webp" alt="Vista en computadora" class="h-auto max-h-[450px] w-2/3 object-contain" />
-              </div>
-            </div>
-          </div>
-        </section>
-
-
+        <Mockups/>
         
         <!-- Features Section -->
         <section id="features" class="w-full min-h-screen py-12 md:py-24 lg:py-32">
@@ -218,45 +103,7 @@
       </div>
 
       <!-- How it works -->
-      <section id="how-it-works" class="w-full py-12 md:py-24 lg:py-32">
-        <div class="container px-4 md:px-6 mx-auto">
-          <div class="flex flex-col items-center justify-center space-y-4 text-center max-w-[900px] mx-auto">
-            <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl">Cómo funciona</h2>
-            <p class="text-gray-300 md:text-xl lg:text-base xl:text-xl leading-relaxed">
-              En solo 3 pasos simples, tendrás acceso a todas tus estadísticas musicales personalizadas.
-            </p>
-          </div>
-          <div class="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-            <div class="flex flex-col items-center space-y-4 text-center">
-              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#9b22b6] font-bold text-xl">
-                1
-              </div>
-              <h3 class="text-xl font-bold">Conecta tu cuenta</h3>
-              <p class="text-gray-300">
-                Autoriza de forma segura el acceso a tu cuenta de Spotify con un solo clic.
-              </p>
-            </div>
-            <div class="flex flex-col items-center space-y-4 text-center">
-              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#9b22b6] font-bold text-xl">
-                2
-              </div>
-              <h3 class="text-xl font-bold">Procesamos tus datos</h3>
-              <p class="text-gray-300">
-                Analizamos tu historial de reproducción y generamos estadísticas detalladas.
-              </p>
-            </div>
-            <div class="flex flex-col items-center space-y-4 text-center">
-              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-[#9b22b6] font-bold text-xl">
-                3
-              </div>
-              <h3 class="text-xl font-bold">Explora tus stats</h3>
-              <p class="text-gray-300">
-                Disfruta de visualizaciones interactivas y descubre insights sobre tu música.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HowItWorks/>
     </main>
   </div>
 </template>
@@ -268,22 +115,21 @@ import { useRouter } from 'vue-router';
 import { spotyStore } from '../../SpotifyStore/spotyStore';
 import FlipWords from '@/components/ui/flip-words/FlipWords.vue';
 import LetterPullup from '@/components/ui/letter-pullup/LetterPullup.vue';
-import TextHighlight from '@/components/ui/text-highlight/TextHighlight.vue';
-import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
 import GlowBorder from "@/components/ui/glow-border/GlowBorder.vue";
-import NumberTicker from "@/components/ui/number-ticker/NumberTicker.vue";
+import LandingHeader from '@/components/landing/LandingHeader.vue';
+import Hero from '@/components/landing/Hero.vue';
+import LimitedAccess from '@/components/landing/LimitedAccess.vue';
+import Mockups from '@/components/landing/Mockups.vue';
+import HowItWorks from '@/components/landing/HowItWorks.vue';
 
 const router = useRouter();
 const store = spotyStore();
 
 const isVisible = ref(false);
-const isDispositivosVisible = ref(false);
 
 const letterPullupWrapper = ref(null);
-const dispositivosWrapper = ref(null);
 
 let observer1;
-let observer2;
 
 onMounted(async () => {
   if (window.location.hash.includes("access_token")) {
@@ -301,23 +147,12 @@ onMounted(async () => {
     { threshold: 0.1 }
   );
   if (letterPullupWrapper.value) observer1.observe(letterPullupWrapper.value);
-
-  observer2 = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting) {
-        isDispositivosVisible.value = true;
-        observer2.disconnect();
-      }
-    },
-    { threshold: 0.1 }
-  );
-  if (dispositivosWrapper.value) observer2.observe(dispositivosWrapper.value);
 });
 
 onBeforeUnmount(() => {
   if (observer1) observer1.disconnect();
-  if (observer2) observer2.disconnect();
 });
+
 </script>
 
 

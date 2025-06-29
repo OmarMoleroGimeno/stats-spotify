@@ -15,7 +15,7 @@
       v-show="store.loading"
       class="absolute inset-0 z-30 flex items-center justify-center bg-black/80"
     >
-      <Loader />
+      <Loader/>
     </div>
   </transition>
 
@@ -24,6 +24,8 @@
       <router-view />
     </transition>
   </main>
+
+  <Toaster/>
 
   <!-- Scroll to top button -->
   <ScrollTop icon="pi pi-arrow-up" />
@@ -78,6 +80,7 @@ import ParticlesBg from "./components/ui/particles-bg/ParticlesBg.vue";
 import Loader from "@/components/loader/Loader.vue";
 import MobileMenu from "@/components/mobile-menu/MobileMenu.vue";
 import { useRoute } from 'vue-router';
+import { Toaster } from '@/components/ui/toast';
 
 const store = spotyStore();
 const route = useRoute();
