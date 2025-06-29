@@ -16,15 +16,14 @@
         <Mockups/>
         
         <!-- Features Section -->
-        <section id="features" class="w-full min-h-screen py-12 md:py-24 lg:py-32">
+        <section id="features" class="w-full min-h-screen py-12 md:py-24 lg:py-32" ref="letterPullupWrapper">
         <!-- <section id="features" class="w-full min-h-screen py-12 md:py-24 lg:py-32 bg-gradient-to-br from-black to-[#9b22b6]/80"> -->
-          <div class="container px-4 md:px-6 mx-auto">
+          <div class="container px-4 md:px-6 mx-auto" v-if="isVisible">
             <div class="flex flex-col items-center justify-center space-y-4 text-center">
               <div class="space-y-2 max-w-[1000px]">
                 <h2>
-                  <div ref="letterPullupWrapper">
+                  <div>
                     <LetterPullup
-                      v-if="isVisible"
                       words="Estadísticas que te sorprenderán"
                       :delay="0.05"
                       class="!text-2xl md:!text-4xl lg:!text-5xl text-white font-bold tracking-tighter sm:text-5xl"
@@ -38,7 +37,7 @@
             </div>
             <div class="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-3 lg:gap-12">
               <!-- Feature Cards -->
-              <div class="bg-transparent rounded-[10px] p-6 space-y-4 relative ">
+              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4 relative animate__animated animate__rotateInDownRight">
                 <GlowBorder
                   :color="['#1DB954', '#1ED760', '#9146FF', '#C17FFF']"
                   :border-radius="10"
@@ -51,7 +50,14 @@
                 <p class="text-gray-300">Descubre tus artistas y canciones más escuchados en diferentes períodos de tiempo.</p>
               </div>
   
-              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4">
+              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4 relative animate__animated animate__rotateIn">
+                <GlowBorder
+                  :color="['#1DB954', '#1ED760', '#9146FF', '#C17FFF']"
+                  :border-radius="10"
+                  :duration="10"
+                  :border-width="2"
+                  class="animate-glow"
+                />
                 <!-- TrendingUp icon -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M3 17l6-6 4 4 8-8" />
@@ -60,14 +66,28 @@
                 <p class="text-gray-300">Explora la diversidad de géneros musicales en tu biblioteca y cómo han evolucionado.</p>
               </div>
   
-              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4">
+              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4 relative animate__animated animate__rotateInDownLeft">
+                <GlowBorder
+                  :color="['#1DB954', '#1ED760', '#9146FF', '#C17FFF']"
+                  :border-radius="10"
+                  :duration="10"
+                  :border-width="2"
+                  class="animate-glow"
+                />
                 <!-- Users icon -->
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="40"  height="40"  viewBox="0 0 24 24" class="text-green-400 icon icon-tabler icons-tabler-outline icon-tabler-users" fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /><path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></svg>
                 <h3 class="text-white text-xl font-semibold">Comparar con Amigos</h3>
                 <p class="text-gray-300">Compara tus gustos musicales con tus amigos y descubre nuevas recomendaciones.</p>
               </div>
   
-              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4">
+              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4 relative animate__animated animate__rotateInUpRight">
+                <GlowBorder
+                  :color="['#1DB954', '#1ED760', '#9146FF', '#C17FFF']"
+                  :border-radius="10"
+                  :duration="10"
+                  :border-width="2"
+                  class="animate-glow"
+                />
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 40 40" id="Festival--Streamline-Outlined-Material" height="40" width="40" class="text-green-400">
                   <desc>
                     Festival Streamline Icon: https://streamlinehq.com
@@ -80,7 +100,14 @@
                 </p>
               </div>
   
-              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4">
+              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4 relative animate__animated animate__rotateIn">
+                <GlowBorder
+                  :color="['#1DB954', '#1ED760', '#9146FF', '#C17FFF']"
+                  :border-radius="10"
+                  :duration="10"
+                  :border-width="2"
+                  class="animate-glow"
+                />
                 <svg  xmlns="http://www.w3.org/2000/svg"  width="40"  height="40"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="text-green-400 icon icon-tabler icons-tabler-outline icon-tabler-vinyl"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 3.937a9 9 0 1 0 5 8.063" /><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M20 4m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M20 4l-3.5 10l-2.5 2" /></svg>
                 <h3 class="text-white text-xl font-semibold">Reproductor personalizado</h3>
                 <p class="text-gray-300">
@@ -88,7 +115,14 @@
                 </p>
               </div>
   
-              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4">
+              <div class="bg-gray-800 rounded-[10px] p-6 space-y-4 relative animate__animated animate__rotateInUpLeft">
+                <GlowBorder
+                  :color="['#1DB954', '#1ED760', '#9146FF', '#C17FFF']"
+                  :border-radius="10"
+                  :duration="10"
+                  :border-width="2"
+                  class="animate-glow"
+                />
               <!-- Icono de línea de tiempo / gráfico -->
               <svg  xmlns="http://www.w3.org/2000/svg"  width="40"  height="40"  viewBox="0 0 24 24"  fill="none" class="text-green-400 icon icon-tabler icons-tabler-outline icon-tabler-chart-bar-popular" stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M9 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M15 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" /><path d="M4 20h14" /></svg>
   

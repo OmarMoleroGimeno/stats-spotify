@@ -4,14 +4,16 @@
         <div class="flex flex-col items-center justify-center space-y-4 text-center">
             
             <!-- Texto principal limitado a 1000px -->
-            <div class="space-y-2 max-w-[1000px] mx-auto">
-            <h2 class="!text-2xl md:!text-4xl lg:!text-5xl font-bold tracking-tight animate__animated animate__fadeInUp">
-                Accede antes que nadie
-            </h2>
-            <p class="text-gray-300 md:text-xl mt-2">
-                Debido a las restricciones de Spotify en modo de desarrollo, solo podemos aceptar hasta 25 personas. 
-                Si quieres probar la app y ver tus estadísticas, solicita acceso y te avisaremos cuando haya disponibilidad.
-            </p>
+            <div class="space-y-2 max-w-[1000px] mx-auto" ref="animations">
+                <div class="animate__animated animate__bounceInDown" v-if="isVisible">
+                  <h2  class="!text-2xl md:!text-4xl lg:!text-5xl font-bold tracking-tight">
+                      Accede antes que nadie
+                  </h2>
+                  <p class="text-gray-300 md:text-xl mt-2">
+                      Debido a las restricciones de Spotify en modo de desarrollo, solo podemos aceptar hasta 25 personas. 
+                      Si quieres probar la app y ver tus estadísticas, solicita acceso y te avisaremos cuando haya disponibilidad.
+                  </p>
+              </div>
             </div>
             
             <div class="relative w-full max-w-[70%] mx-auto flex h-[500px] flex-col overflow-hidden border border-gray-700 rounded-2xl bg-gradient-to-br from-[#111] via-[#1a1a1a] to-[#111] shadow-xl">
@@ -106,7 +108,7 @@
     </section>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Marquee from '@/components/ui/marquee/Marquee.vue';
 import ReviewCard from '@/components/ui/review-card/ReviewCard.vue';
 import BlurReveal from '@/components/ui/blur-reveal/BlurReveal.vue';
@@ -120,9 +122,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
-import { toTypedSchema } from '@vee-validate/zod'
-import { useForm } from 'vee-validate'
-import * as z from 'zod'
+import { toTypedSchema } from '@vee-validate/zod';
+import { useForm } from 'vee-validate';
+import * as z from 'zod';
 import { Button } from '@/components/ui/button';
 import {
   FormControl,
@@ -136,7 +138,30 @@ import { Input } from '@/components/ui/input';
 import { toast } from '@/components/ui/toast';
 import RadiantText from '@/components/ui/radiant-text/RadiantText.vue';
 
-const isOpen = ref(false)
+const isOpen = ref(false);
+const isVisible = ref(false);
+const animations = ref(null);
+
+let observer1;
+
+
+onMounted(async () => {
+
+  observer1 = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        isVisible.value = true;
+        observer1.disconnect();
+      }
+    },
+    { threshold: 0.1 }
+  );
+  if (animations.value) observer1.observe(animations.value);
+});
+
+onBeforeUnmount(() => {
+  if (observer1) observer1.disconnect();
+});
 
 const formSchema = toTypedSchema(z.object({
   email: z.string().email("Introduce un correo válido."),

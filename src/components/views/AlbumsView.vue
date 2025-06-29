@@ -19,6 +19,7 @@
               class="w-full h-full object-cover rounded-xl"
               @load="extractColors"
               crossorigin="anonymous"
+              alt="Album cover"
             >
             <!-- Gradientes -->
             <div class="absolute bottom-0 left-0 w-full h-32 md:hidden pointer-events-none"

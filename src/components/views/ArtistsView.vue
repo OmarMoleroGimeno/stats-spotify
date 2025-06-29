@@ -62,7 +62,7 @@
                     <template #default>
                     <div class="relative w-full h-full md:h-72 lg:h-80 rounded-2xl overflow-hidden">
                       <img
-                        :src="artist.images[0]?.url"
+                        :src="artist.images[2]?.url"
                         class="w-full h-full object-cover"
                         :alt="artist.name"
                       />
