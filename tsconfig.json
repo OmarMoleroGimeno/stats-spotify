@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "esModuleInterop": true
-  }
+    "outDir": "./dist",  // <- debería estar presente
+    "rootDir": "./src",  // <- opcional pero recomendable
+    "declaration": true, // si generas .d.ts
+    "sourceMap": false,
+    "noEmit": false       // si es true, no generará .js
+  },
+  "include": ["src"]
 }

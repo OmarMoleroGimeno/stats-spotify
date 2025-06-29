@@ -59,7 +59,7 @@
         </svg>
       </a>
       <!-- LinkedIn -->
-      <a href="https://www.linkedin.com/in/tuusuario" aria-label="Ir al perfil de linkedin" target="_blank" rel="noopener noreferrer"
+      <a href="https://linkedin.com/in/omar-molero-gimeno-33526b2aa" aria-label="Ir al perfil de linkedin" target="_blank" rel="noopener noreferrer"
          class="hover:text-customGreen transition-transform duration-300 ease-in-out hover:scale-110 cursor-pointer">
         <svg width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
           <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zM7.5 8h3.8v2.2h.05c.53-1 1.83-2.2 3.75-2.2 4.01 0 4.9 2.6 4.9 6V24h-4v-7.5c0-1.79-.03-4.1-2.5-4.1s-2.88 1.95-2.88 4v7.6h-4V8z"/>
