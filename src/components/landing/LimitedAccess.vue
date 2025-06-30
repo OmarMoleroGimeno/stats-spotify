@@ -54,7 +54,7 @@
                 <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
 
                 <!-- Contenido encima -->
-                <div class="relative z-10 flex flex-col items-center justify-center text-white text-center p-10 space-y-6 h-screen">
+                <div class="relative z-10 flex flex-col items-center justify-center text-white text-center lg:p-10 lg:space-y-6 h-screen">
                     <BlurReveal
                         :delay="0.2"
                         :duration="1"
@@ -66,14 +66,14 @@
                         </p>
                         <Dialog v-model:open="isOpen">
                             <DialogTrigger>
-                                <button class="px-6 py-3 font-semibold bg-green-600 hover:bg-green-700 inline-flex items-center gap-2 text-white rounded-lg hover:scale-105 transition-all">
+                                <button class="lg:px-6 lg:py-3 px-2 py-2 text-sm lg:text-base font-semibold bg-green-600 hover:bg-green-700 inline-flex items-center gap-2 text-white rounded-lg hover:scale-105 transition-all">
                                     Solicitar acceso
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right-dashed"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12h.5m3 0h1.5m3 0h6" /><path d="M15 16l4 -4" /><path d="M15 8l4 4" /></svg>
                                 </button>
                             </DialogTrigger>
                             <DialogContent class="bg-transparent border-white/30 backdrop-blur-lg text-white p-4 sm:p-6 md:p-8 rounded-lg w-[90%]  md:w-[30%] max-w-screen-md mx-auto landing">
                                 <DialogHeader>
-                                    <DialogTitle>Solicitar acceso</DialogTitle>
+                                    <DialogTitle></DialogTitle>
                                     <DialogDescription>
                                         Por favor, proporciona el correo electrónico vinculado a tu cuenta de Spotify para autorizar el acceso a la aplicación.
                                     </DialogDescription>
